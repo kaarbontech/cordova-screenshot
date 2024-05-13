@@ -43,7 +43,6 @@ public class Screenshot extends CordovaPlugin {
     private String mFileName;
     private Integer mQuality;
 
-    protected final static String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
     public static final int PERMISSION_DENIED_ERROR = 20;
     public static final int SAVE_SCREENSHOT_SEC = 0;
 
@@ -221,11 +220,7 @@ public class Screenshot extends CordovaPlugin {
         mArgs = args;
 
         if (action.equals("saveScreenshot")) {
-            if(PermissionHelper.hasPermission(this, PERMISSIONS[0])) {
-                saveScreenshot();
-            } else {
-                PermissionHelper.requestPermissions(this, SAVE_SCREENSHOT_SEC, PERMISSIONS);
-            }
+            saveScreenshot();
             return true;
         } else if (action.equals("getScreenshotAsURI")) {
             getScreenshotAsURI();
